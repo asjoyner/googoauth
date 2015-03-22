@@ -34,6 +34,16 @@ var (
 	authport = flag.String("authport", "12345", "HTTP Server port.  Only needed for the first run, your browser will send credentials here.  Must be accessible to your browser, and authorized in the developer console.")
 )
 
+// Client accepts the connection details, and makes an oAuth connection
+//
+// id and secret are the CLIENT ID and CLIENT SECRET which you can generate at
+// the Google Developer Console: http://console.developers.google.com
+// You want an "Installed Application" of type "Other".
+//
+// Scope defines the access you are requesting, it is specific to the application.
+// Strings are URLs, eg. "https://www.googleapis.com/auth/calendar", typically
+// accessed in Go via the constants in the Go API, eg.
+// directory.AdminDirectoryGroupScope
 func Client(id, secret string, scope []string) *http.Client {
 	config := &oauth2.Config{
 		ClientID:     id,
